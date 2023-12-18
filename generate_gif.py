@@ -10,4 +10,4 @@ def make_gif(folder, run_name):
     
 
 if __name__ == "__main__":
-    make_gif(folder="/home/ubuntu/image_generation/saved/images", run_name="run_18.12-17:51:14")
+    make_gif(folder="/home/ubuntu/image_generation/saved/images", run_name="run_1218-213401")

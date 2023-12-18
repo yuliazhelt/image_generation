@@ -68,6 +68,7 @@ if __name__ == "__main__":
     #     print("model loaded")
 
     os.mkdir(f"{config['train']['save_images_dir']}/run_{unique_id}")
+    os.mkdir(f"{config['train']['save_path']}/run_{unique_id}")
 
     train(
         model=model,

@@ -106,14 +106,15 @@ def train(
             epoch+1, num_epochs, 
             losses_g[-1], losses_d[-1], real_scores[-1], fake_scores[-1]))
         
-        # torch.save(
-        #     {
-        #         'generator': model['generator'].state_dict(),
-        #         'discriminator': model['discriminator'].state_dict(), 
-        #         'optimizer': optimizer.state_dict()
-        #     }, 
-        #     f"{save_path}/epoch={epoch}.pth"
-        # )
+        torch.save(
+            {
+                'generator': model['generator'].state_dict(),
+                'discriminator': model['discriminator'].state_dict(), 
+                'optimizer_generator': optimizer['generator'].state_dict(),
+                'optimizer_discriminator': optimizer['discriminator'].state_dict()
+            }, 
+            f"{save_path}/epoch={epoch}.pth"
+        )
 
         ssim, fid = eval_epoch(data_loader=eval_loader, model=model, device=device)
 
