@@ -1,0 +1,17 @@
+dataset: 
+  train:
+    dataset_path: /home/ubuntu/image_generation/data
+
+train:
+  batch_size: 128
+  lr: 2.0E-4
+  betas: [0.5, 0.999]
+  num_epochs: 100
+  save_images_dir: "/home/ubuntu/image_generation/saved/images"
+
+model:
+  generator:
+    latent_size: 128
+    depths: 64
+  discriminator:
+    depths: 64
