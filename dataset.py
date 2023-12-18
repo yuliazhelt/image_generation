@@ -1,10 +1,7 @@
 from torch.utils.data import Dataset
 from torchvision.datasets import ImageFolder
 import torchvision.transforms as transforms
-import torch
-import torch.nn.functional as F
 from torchvision.utils import save_image
-import matplotlib.pyplot as plt
 import numpy as np
 import os
 
@@ -48,11 +45,17 @@ class CustomDataset(Dataset):
         return os.path.join(save_dir, save_name)
 
 
+class GeneratedImagesDataset(Dataset):
+    def __init__(self, generated_images):
+        """
+        Args:
+            generated_images (list or array): List or array of generated images.
+        """
+        self.generated_images = generated_images
 
-# def collate_fn(dataset_items: List[dict]):
-#     audios = []
-#     labels = []
-#     for elem in dataset_items:
-#         audios.append(elem["audio"])
-#         labels.append(elem["label"])
-#     return torch.stack(audios).unsqueeze(1), torch.tensor(labels)
+    def __len__(self):
+        return len(self.generated_images)
+
+    def __getitem__(self, ind):
+        image = self.generated_images[ind]
+        return image, 0

@@ -1,13 +1,20 @@
 dataset: 
   train:
-    dataset_path: /home/ubuntu/image_generation/data
+    dataset_path: /home/ubuntu/image_generation/data/train
+
+  eval:
+    dataset_path: /home/ubuntu/image_generation/data/eval
 
 train:
   batch_size: 128
   lr: 2.0E-4
   betas: [0.5, 0.999]
   num_epochs: 100
+  save_path: "/home/ubuntu/image_generation/saved/models"
   save_images_dir: "/home/ubuntu/image_generation/saved/images"
+
+eval:
+  batch_size: 128
 
 model:
   generator:

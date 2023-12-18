@@ -7,8 +7,10 @@ class Generator(nn.Module):
         self.depths = depths
         self.latent_size = latent_size
 
+
         self.conv = nn.Sequential(
             nn.ConvTranspose2d(in_channels=latent_size, out_channels=depths * 8, kernel_size=4, stride=1, padding=0, bias=False),
+
             nn.BatchNorm2d(num_features=depths * 8),
             nn.ReLU(),
 
@@ -41,19 +43,19 @@ class Discriminator(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=depths, kernel_size=4, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_features=depths),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(negative_slope=0.2),
 
             nn.Conv2d(in_channels=depths, out_channels=depths * 2, kernel_size=4, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_features=depths * 2),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(negative_slope=0.2),
 
             nn.Conv2d(in_channels=depths * 2, out_channels=depths * 4, kernel_size=4, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_features=depths * 4),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(negative_slope=0.2),
 
             nn.Conv2d(depths * 4, out_channels=depths * 8, kernel_size=4, stride=2, padding=1, bias=False),
             nn.BatchNorm2d(num_features=depths * 8),
-            nn.LeakyReLU(),
+            nn.LeakyReLU(negative_slope=0.2),
 
             nn.Conv2d(in_channels=depths * 8, out_channels=1, kernel_size=4, stride=1, padding=0, bias=False),
             nn.Sigmoid()
